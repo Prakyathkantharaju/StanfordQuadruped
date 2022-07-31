@@ -42,7 +42,7 @@ class Configuration:
         
         #################### MOVEMENT PARAMS ####################
         self.z_time_constant = 0.02
-        self.z_speed = 0.03  # maximum speed [m/s]
+        self.z_speed = 0.05 #0.03  # maximum speed [m/s]
         self.pitch_deadband = 0.02
         self.pitch_time_constant = 0.25
         self.max_pitch_rate = 0.15
@@ -54,12 +54,12 @@ class Configuration:
         #################### STANCE ####################
         self.delta_x = 0.1
         self.delta_y = 0.09
-        self.x_shift = 0.0
+        self.x_shift = 0.05 # 0.0
         self.default_z_ref = -0.16
 
         #################### SWING ######################
         self.z_coeffs = None
-        self.z_clearance = 0.07
+        self.z_clearance = 0.07 # 0.07
         self.alpha = (
             0.5  # Ratio between touchdown distance and total horizontal stance movement
         )
