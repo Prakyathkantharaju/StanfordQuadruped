@@ -4,9 +4,11 @@ from src.IMU import IMU
 from src.Controller import Controller
 from src.JoystickInterface import JoystickInterface
 from src.State import State
-from pupper.HardwareInterface import HardwareInterface
+#from pupper.HardwareInterface import HardwareInterface
 from pupper.Config import Configuration
 from pupper.Kinematics import four_legs_inverse_kinematics
+
+from src.RecordAction import DataRecorder
 
 def main(use_imu=False):
     """Main program
@@ -14,7 +16,7 @@ def main(use_imu=False):
 
     # Create config
     config = Configuration()
-    hardware_interface = HardwareInterface()
+    #hardware_interface = HardwareInterface()
 
     # Create imu handle
     if use_imu:
@@ -30,6 +32,8 @@ def main(use_imu=False):
     print("Creating joystick listener...")
     joystick_interface = JoystickInterface(config)
     print("Done.")
+
+    record_data = DataRecorder()
 
     last_loop = time.time()
 
@@ -71,9 +75,11 @@ def main(use_imu=False):
 
             # Step the controller forward by dt
             controller.run(state, command)
+            print(state.joint_angles)
+            record_data.add_data(state.joint_angles)
 
             # Update the pwm widths going to the servos
-            hardware_interface.set_actuator_postions(state.joint_angles)
+            #hardware_interface.set_actuator_postions(state.joint_angles)
 
 
 main()
